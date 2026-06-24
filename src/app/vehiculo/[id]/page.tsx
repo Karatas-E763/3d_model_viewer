@@ -82,15 +82,16 @@ export default function VehiclePage({ params }: PageProps) {
             </motion.div>
           </div>
 
-          <div className="relative min-h-[calc(100vh-12rem)] w-full flex-1 px-2 pb-4 lg:min-h-[calc(100vh-10rem)] lg:px-6">
+          <div className="relative min-h-[calc(100vh-12rem)] w-full flex-1 overscroll-contain px-2 pb-4 lg:min-h-[calc(100vh-10rem)] lg:px-6">
             <VehicleViewer
               vehicle={vehicle}
               hotspotInputs={hotspotInputs}
-              interactive={!panelsOpen}
+              interactive
             />
-            <PanelsOverlay vehicleTitle={vehicle.title} />
           </div>
         </div>
+
+        <PanelsOverlay vehicleTitle={vehicle.title} />
 
         <button
           type="button"

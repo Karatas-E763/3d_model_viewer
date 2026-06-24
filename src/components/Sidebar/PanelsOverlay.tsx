@@ -35,7 +35,7 @@ export default function PanelsOverlay({ vehicleTitle }: PanelsOverlayProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="pointer-events-none absolute inset-0 z-30 flex items-start justify-end overflow-hidden p-2 pt-4 sm:p-4 lg:p-6"
+          className="pointer-events-none fixed bottom-16 right-2 top-36 z-40 flex items-start justify-end overflow-hidden sm:right-4 lg:right-6 lg:top-[10.5rem]"
           aria-hidden={!panelsOpen}
         >
           <motion.div
@@ -43,7 +43,7 @@ export default function PanelsOverlay({ vehicleTitle }: PanelsOverlayProps) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 48 }}
             transition={{ type: "spring", stiffness: 280, damping: 28 }}
-            className="pointer-events-auto flex h-[calc(100dvh-12.5rem)] max-h-[calc(100dvh-12.5rem)] w-full max-w-[920px] min-h-0 flex-col gap-3 overflow-hidden lg:flex-row lg:gap-4"
+            className="pointer-events-auto flex h-full w-full max-w-[920px] min-h-0 flex-col gap-3 overflow-hidden lg:flex-row lg:gap-4"
           >
             <div className="flex min-h-0 max-h-[58%] flex-col gap-3 overflow-hidden lg:max-h-none lg:flex-1 lg:w-[48%]">
               <div className="min-h-0 flex-1 overflow-hidden">
