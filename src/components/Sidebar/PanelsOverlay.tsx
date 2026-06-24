@@ -35,7 +35,7 @@ export default function PanelsOverlay({ vehicleTitle }: PanelsOverlayProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="pointer-events-none absolute inset-0 z-30 flex items-start justify-end p-2 pt-4 sm:p-4 lg:p-6"
+          className="pointer-events-none absolute inset-0 z-30 flex items-start justify-end overflow-hidden p-2 pt-4 sm:p-4 lg:p-6"
           aria-hidden={!panelsOpen}
         >
           <motion.div
@@ -43,24 +43,28 @@ export default function PanelsOverlay({ vehicleTitle }: PanelsOverlayProps) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 48 }}
             transition={{ type: "spring", stiffness: 280, damping: 28 }}
-            className="pointer-events-auto flex h-full max-h-[calc(100vh-10rem)] w-full max-w-[920px] flex-col gap-3 overflow-hidden lg:flex-row lg:gap-4"
+            className="pointer-events-auto flex h-[calc(100dvh-12.5rem)] max-h-[calc(100dvh-12.5rem)] w-full max-w-[920px] min-h-0 flex-col gap-3 overflow-hidden lg:flex-row lg:gap-4"
           >
-            <div className="flex max-h-[55%] min-h-0 flex-1 flex-col gap-3 overflow-y-auto lg:max-h-full lg:w-[48%]">
-              <EquipmentCard
-                key={product.id}
-                product={product}
-                hotspotLabel={selectedHotspot?.label ?? "Cabina"}
-                onAddToQuote={() => addToQuote(product.id)}
-                onClose={() => setPanelsOpen(false)}
-              />
-              <VideoPlayer
-                key={product.video || product.id}
-                src={product.video || "/assets/videos/video.mp4"}
-                title="¿CÓMO FUNCIONA DIRECTRACK GPS PRO?"
-              />
+            <div className="flex min-h-0 max-h-[58%] flex-col gap-3 overflow-hidden lg:max-h-none lg:flex-1 lg:w-[48%]">
+              <div className="min-h-0 flex-1 overflow-hidden">
+                <EquipmentCard
+                  key={product.id}
+                  product={product}
+                  hotspotLabel={selectedHotspot?.label ?? "Cabina"}
+                  onAddToQuote={() => addToQuote(product.id)}
+                  onClose={() => setPanelsOpen(false)}
+                />
+              </div>
+              <div className="shrink-0 [&_.aspect-video]:max-h-[6.5rem]">
+                <VideoPlayer
+                  key={product.video || product.id}
+                  src={product.video || "/assets/videos/video.mp4"}
+                  title="¿CÓMO FUNCIONA DIRECTRACK GPS PRO?"
+                />
+              </div>
             </div>
 
-            <div className="flex min-h-0 flex-1 flex-col lg:w-[52%]">
+            <div className="flex min-h-0 flex-1 flex-col overflow-hidden lg:w-[52%]">
               <QuotePanel vehicleTitle={vehicleTitle} />
             </div>
           </motion.div>

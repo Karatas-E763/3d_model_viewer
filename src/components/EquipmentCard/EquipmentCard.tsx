@@ -45,7 +45,7 @@ export default function EquipmentCard({
       initial={{ opacity: 0, x: 30 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 30 }}
-      className="flex h-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl"
+      className="flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl"
     >
       <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
         <div className="flex items-center gap-2">
