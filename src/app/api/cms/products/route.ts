@@ -21,6 +21,7 @@ export async function PUT(request: Request) {
     await writeProducts(data);
     return NextResponse.json({ ok: true });
   } catch (error) {
+    console.error('error =>', error);
     if (error instanceof Error && error.message === "UNAUTHORIZED") {
       return NextResponse.json({ error: "No autorizado" }, { status: 401 });
     }
