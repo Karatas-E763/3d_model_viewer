@@ -76,7 +76,12 @@ interface HotspotMarkerProps {
   onSelect: (hotspot: Hotspot) => void;
 }
 
-function HotspotMarker({ hotspot, isActive, onSelect }: HotspotMarkerProps) {
+function HotspotMarker({
+  hotspot,
+  isActive,
+  panelsOpen,
+  onSelect,
+}: HotspotMarkerProps & { panelsOpen: boolean }) {
   const [hovered, setHovered] = useState(false);
   const showLabel = hovered || isActive;
   const [ox, oy] = hotspot.labelOffset ?? [72, -48];
@@ -112,10 +117,11 @@ function HotspotMarker({ hotspot, isActive, onSelect }: HotspotMarkerProps) {
 
       {showLabel && (
         <Html
+          key={panelsOpen ? "under-modals" : "default"}
           position={label3D}
           center
           distanceFactor={12}
-          zIndexRange={[200, 0]}
+          zIndexRange={panelsOpen ? [-1, -10] : [200, 0]}
           style={{ pointerEvents: "none" }}
         >
           <motion.div
@@ -162,6 +168,7 @@ export default function Hotspots({ hotspots }: HotspotsProps) {
           key={hotspot.id}
           hotspot={hotspot}
           isActive={selectedHotspot?.id === hotspot.id}
+          panelsOpen={panelsOpen}
           onSelect={handleSelect}
         />
       ))}
